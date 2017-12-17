@@ -15,7 +15,7 @@ export class ProjectsService {
     const prjLoader = Observable.create((observer: Observer<Project[]>) => {
       setTimeout(() => {
         observer.next(this.projects);
-      }, 2000);
+      }, 500);
     });
     return prjLoader;
   }
