@@ -1,14 +1,14 @@
-import { AppPage } from './app.po';
+import { NgStylesAnimationPage } from './app.po';
 
-describe('angular-animations App', () => {
-  let page: AppPage;
+describe('ng-styles-animation App', () => {
+  let page: NgStylesAnimationPage;
 
   beforeEach(() => {
-    page = new AppPage();
+    page = new NgStylesAnimationPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display message saying app works', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(page.getParagraphText()).toEqual('app works!');
   });
 });
