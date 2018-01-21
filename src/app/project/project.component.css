@@ -5,18 +5,6 @@
   margin: 20px 0;
 }
 
-/*@keyframes marked {*/
-  /*0% {*/
-    /*transform: scale(1);*/
-  /*}*/
-  /*50% {*/
-    /*transform: scale(1.005);*/
-  /*}*/
-  /*100% {*/
-    /*transform: scale(1);*/
-  /*}*/
-/*}*/
-
 :host(.inactive) {
   border: 1px solid #ccc;
   color: #ccc;
