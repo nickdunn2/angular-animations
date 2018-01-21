@@ -1,31 +1,21 @@
 :host {
   display: block;
-  border: 1px solid black;
   border-radius: 3px;
   box-shadow: 3px 3px 2px #ccc;
   margin: 20px 0;
-  padding: 20px;
-  transition: background-color 500ms ease-out;
 }
 
-:host(.marked) {
-  background-color: #f3f3f3;
-  border: 2px solid black;
-  padding: 19px;
-  animation: marked 0.2s ease-out;
-}
-
-@keyframes marked {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.005);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
+/*@keyframes marked {*/
+  /*0% {*/
+    /*transform: scale(1);*/
+  /*}*/
+  /*50% {*/
+    /*transform: scale(1.005);*/
+  /*}*/
+  /*100% {*/
+    /*transform: scale(1);*/
+  /*}*/
+/*}*/
 
 :host(.inactive) {
   border: 1px solid #ccc;
