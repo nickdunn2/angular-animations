@@ -4,6 +4,7 @@ import { Project } from './project.model';
 
 import { ProjectsService } from './projects.service';
 import { itemStateTrigger, markedTrigger } from './animations';
+import { AnimationEvent } from '@angular/animations';
 
 @Component({
   selector: 'app-projects',
@@ -15,10 +16,11 @@ import { itemStateTrigger, markedTrigger } from './animations';
   ]
 })
 export class ProjectsComponent implements OnInit {
-  projects: Project[];
-  markedPrjIndex = 0;
-  progress = 'progressing';
-  createNew = false;
+  projects: Project[]
+  displayedProjects: Project[] = []
+  markedPrjIndex = 0
+  progress = 'progressing'
+  createNew = false
 
   constructor(private prjService: ProjectsService) { }
 
@@ -26,22 +28,37 @@ export class ProjectsComponent implements OnInit {
     this.prjService.loadProjects()
       .subscribe(
         (prj: Project[]) => {
-          this.progress = 'finished';
-          this.projects = prj;
+          this.progress = 'finished'
+          this.projects = prj
+          if (this.projects.length >= 1) {
+            this.displayedProjects.push(this.projects[0])
+          }
         }
-      );
+      )
   }
 
   onStatusUpdated(newStatus: string, id: number) {
-    this.projects[id].status = newStatus;
+    this.projects[id].status = newStatus
   }
 
   onProjectDeleted(index: number) {
-    this.projects.splice(index, 1);
+    this.projects.splice(index, 1)
   }
 
   onProjectCreated(project: Project) {
-    this.createNew = false;
-    this.projects.unshift(project);
+    this.createNew = false
+    this.projects.unshift(project)
+  }
+
+  onItemDone(event: AnimationEvent, prevId: number) {
+    if (event.fromState !== 'void') {
+      return
+    }
+
+    if (this.projects.length > prevId + 1) {
+      this.displayedProjects.push(this.projects[prevId + 1])
+    } else {
+      this.projects = this.displayedProjects
+    }
   }
 }
