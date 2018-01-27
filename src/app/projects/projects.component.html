@@ -37,6 +37,7 @@
     <app-project
       *ngFor="let prj of projects; let i = index"
       [@markedState]="markedPrjIndex === i ? 'marked' : 'default'"
+      @itemState
       [ngClass]="{ inactive: prj.status === 'inactive' }"
       [project]="prj"
       (statusUpdated)="onStatusUpdated($event, i)"
