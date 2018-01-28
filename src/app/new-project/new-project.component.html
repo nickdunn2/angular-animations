@@ -35,6 +35,7 @@
   </div>
   <button
     type="submit"
+    [@buttonState]="f.valid ? 'valid' : 'invalid'"
     [disabled]="!f.valid"
     class="btn btn-success">Create Project</button>
   <button
