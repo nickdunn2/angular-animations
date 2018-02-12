@@ -1,4 +1,4 @@
-import { animate, keyframes, state, style, transition, trigger } from '@angular/animations'
+import { animate, keyframes, query, stagger, state, style, transition, trigger } from '@angular/animations'
 
 export const markedTrigger = trigger('markedState', [
   state('default', style({
@@ -31,22 +31,6 @@ export const markedTrigger = trigger('markedState', [
 ])
 
 export const itemStateTrigger = trigger('itemState', [
-  transition(':enter', [
-    animate('500ms ease-out', keyframes([
-      style({
-        opacity: 0,
-        transform: 'translateX(-100%)'
-      }),
-      style({
-        opacity: 1,
-        transform: 'translateX(5%)'
-      }),
-      style({
-        opacity: 1,
-        transform: 'translateX(0)'
-      })
-    ]))
-  ]),
   transition(':leave', [
     animate('400ms ease-out', keyframes([
       style({
@@ -96,5 +80,26 @@ export const slideStateTrigger = trigger('slideState', [
     animate('300ms ease-out', style({
       transform: 'translateY(-100%)'
     }))
+  ])
+])
+
+export const listStateTrigger = trigger('listState', [
+  transition('* => *', [
+    query(':enter', [
+      style({
+        opacity: 0,
+        transform: 'translateX(-100%)'
+      }),
+      stagger(300, animate('500ms ease-out', keyframes([
+        style({
+          opacity: 1,
+          transform: 'translateX(5%)'
+        }),
+        style({
+          opacity: 1,
+          transform: 'translateX(0)'
+        })
+      ])))
+    ], { optional: true })
   ])
 ])
