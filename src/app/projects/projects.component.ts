@@ -2,7 +2,7 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 
 import { Project } from './project.model';
 import { ProjectsService } from './projects.service';
-import { itemStateTrigger, markedTrigger, slideStateTrigger } from './animations';
+import { itemStateTrigger, listStateTrigger, markedTrigger, slideStateTrigger } from './animations';
 import { AnimationEvent } from '@angular/animations';
 import { routeFadeStateTrigger } from '../shared/route-animations';
 
@@ -13,6 +13,7 @@ import { routeFadeStateTrigger } from '../shared/route-animations';
   animations: [
     markedTrigger,
     itemStateTrigger,
+    listStateTrigger,
     routeFadeStateTrigger,
     slideStateTrigger
   ]
@@ -20,7 +21,6 @@ import { routeFadeStateTrigger } from '../shared/route-animations';
 export class ProjectsComponent implements OnInit {
   @HostBinding('@routeFadeState') routeAnimation = true
   projects: Project[]
-  displayedProjects: Project[] = []
   markedPrjIndex = 0
   progress = 'progressing'
   createNew = false
@@ -33,9 +33,6 @@ export class ProjectsComponent implements OnInit {
         (prj: Project[]) => {
           this.progress = 'finished'
           this.projects = prj
-          if (this.projects.length >= 1) {
-            this.displayedProjects.push(this.projects[0])
-          }
         }
       )
   }
@@ -53,17 +50,5 @@ export class ProjectsComponent implements OnInit {
     setTimeout(() => {
       this.projects.unshift(project)
     }, 300)
-  }
-
-  onItemDone(event: AnimationEvent, prevId: number) {
-    if (event.fromState !== 'void') {
-      return
-    }
-
-    if (this.projects.length > prevId + 1) {
-      this.displayedProjects.push(this.projects[prevId + 1])
-    } else {
-      this.projects = this.displayedProjects
-    }
   }
 }
