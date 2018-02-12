@@ -1,14 +1,14 @@
 import { animate, group, query, state, style, transition, trigger } from '@angular/animations'
 
 export const buttonStateTrigger = trigger('buttonState', [
-  // state('valid', style({
-  //   backgroundColor: 'green',
-  //   borderColor: 'darkgreen'
-  // })),
-  // state('invalid', style({
-  //   backgroundColor: 'lightgray',
-  //   borderColor: 'gray'
-  // })),
+  state('valid', style({
+    backgroundColor: 'green',
+    borderColor: 'darkgreen'
+  })),
+  state('invalid', style({
+    backgroundColor: 'lightgray',
+    borderColor: 'gray'
+  })),
   transition('invalid => valid', [
     group([
       animate(100, style({
